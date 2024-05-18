@@ -1,9 +1,12 @@
 import React from 'react'
+import Left from './Home/Left/Left'
+import Right from './Home/Right/Right'
 
 const App = () => {
   return (
-    <div>
-      <h1 className='text-red-500 text-3xl font-bold'>Megh</h1>
+    <div className='flex h-screen'>
+      <Left/>
+      <Right/>
     </div>
   )
 }
