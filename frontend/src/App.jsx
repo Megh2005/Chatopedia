@@ -4,7 +4,7 @@ import Right from './Home/Right/Right'
 
 const App = () => {
   return (
-    <div className='flex h-screen'>
+    <div className='flex h-screen bit'>
       <Left/>
       <Right/>
     </div>
