@@ -1,25 +1,43 @@
+import createToken from "../Token/token.js";
 import User from "../models/userSchema.js";
-import mongoose from "mongoose";
+import bcrypt from "bcryptjs";
 
-export const register = (req, res) => {
+export const register = async (req, res) => {
   const { name, email, password, confirmpassword } = req.body;
   try {
     if (password !== confirmpassword) {
-      return res.status(400).json({ error: "Passwords Are Not Matching" });
+      return res.status(400).json({
+        success: false,
+        error: "Passwords Are Not Matching",
+      });
     }
-    const user = User.findOne({ email });
+    const user = await User.findOne({ email });
     if (user) {
-      return res.status(400).json({ error: "User Already Exists" });
+      return res.status(400).json({
+        success: false,
+        error: "User Already Exists",
+      });
     }
-    const newUser = new User({
+    const hashpassword = await bcrypt.hash(password, 10);
+    const newUser = await new User({
       name,
       email,
-      password,
+      password: hashpassword,
     });
-    newUser.save();
-    return res.status(201).json({ message: "User Registred Successfully" });
+    await newUser.save();
+    if (newUser) {
+      createToken(newUser._id, res);
+      return res.status(201).json({
+        success: true,
+        message: "User Registred Successfully",
+        newUser,
+      });
+    }
   } catch (error) {
     console.log(error);
-    res.status(500).json({ error: "Something Went Wrong" });
+    res.status(500).json({
+      success: false,
+      error: "Something Went Wrong",
+    });
   }
 };

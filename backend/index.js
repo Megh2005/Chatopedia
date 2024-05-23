@@ -1,10 +1,13 @@
 import express from "express";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
+import userRoutes from "./routes/user.routes.js";
 const app = express();
 dotenv.config();
+app.use(express.json())
 const PORT = process.env.PORT || 4000;
 const URI = process.env.MONGO_URI;
+
 
 try {
   mongoose.connect(URI);
@@ -13,10 +16,7 @@ try {
   console.log(error);
 }
 
-app.get("/", (req, res) => {
-  res.send("Hello Developer!");
-});
-
+app.use("/user",userRoutes)
 app.listen(PORT, () => {
   console.log(`welcome to port ${PORT}`);
 });

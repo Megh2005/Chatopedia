@@ -1,0 +1,13 @@
+{
+    "success": true,
+    "message": "User Registred Successfully",
+    "newUser": {
+        "name": "Megh",
+        "email": "megh@gmail.com",
+        "password": "12345678",
+        "_id": "664f01edd281d147f0d5809e",
+        "createdAt": "2024-05-23T08:44:29.522Z",
+        "updatedAt": "2024-05-23T08:44:29.522Z",
+        "__v": 0
+    }
+}

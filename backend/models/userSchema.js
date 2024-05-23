@@ -1,5 +1,4 @@
 import mongoose from "mongoose";
-import validator from "validator";
 
 const userSchema = mongoose.Schema(
   {
@@ -10,18 +9,15 @@ const userSchema = mongoose.Schema(
     email: {
       type: String,
       required: true,
-      validate: validator.isEmail,
       unique: true,
     },
     password: {
       type: String,
       required: true,
-      maxLength: 10,
+      minLength: 8
     },
     confirmpassword: {
       type: String,
-      required: true,
-      maxLength: 10,
     },
   },
   { timestamps: true }
