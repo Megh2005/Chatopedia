@@ -2,7 +2,7 @@ import React from "react";
 
 const Login = () => {
   return (
-    <div>
+  
       <>
         <div className="flex h-screen items-center justify-center">
           <form
@@ -65,7 +65,6 @@ const Login = () => {
           </form>
         </div>
       </>
-    </div>
   );
 };
 
